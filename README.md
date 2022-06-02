@@ -21,7 +21,7 @@ and each frame is an RGB image of dimensions 480x704x3.
 
 This is a Moving Camera Moving Objects (MCMO) video, which is the hardest situation to analyze in a dynamic scene.
 
-![image](https://user-images.githubusercontent.com/24894934/171617674-cc4d3840-74ea-40ad-b8f2-fcb08995f75d.png)
+![image](images/first frame.png)
 *First frame of the video*
 
 
