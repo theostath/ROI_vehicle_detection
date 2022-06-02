@@ -115,5 +115,9 @@ This is the result:
 
 This ROI tends to look like the original with T=2 and without the noise.
 
-Now, I apply the **Frame Average Method** with T=10.
+Now, I apply the **Frame Average Method** with theshold T=10.
+
+This is the 150th frame for the Frame Average Method with AWGN:
+
+![plot](./images/ROI_for_frameNo150_frames_average_AWGN.jpg "150th frame, frames average with AWGN")
 
