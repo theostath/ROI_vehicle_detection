@@ -21,7 +21,7 @@ and each frame is an RGB image of dimensions 480x704x3.
 
 This is a Moving Camera Moving Objects (MCMO) video, which is the hardest situation to analyze in a dynamic scene.
 
-!([images](https://github.com/theostath/ROI_vehicle_detection/tree/main/images/first_frame.png)
+!([alt text](https://github.com/theostath/ROI_vehicle_detection/tree/main/images/first_frame.png)
 *First frame of the video*
 
 
