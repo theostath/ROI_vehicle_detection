@@ -22,6 +22,7 @@ and each frame is an RGB image of dimensions 480x704x3.
 This is a Moving Camera Moving Objects (MCMO) video, which is the hardest situation to analyze in a dynamic scene.
 
 This is the first frame of the video:
+
 ![plot](./images/first_frame.jpg "First frame of the video")
 
 ## Methods for defining ROI
@@ -53,11 +54,13 @@ One more way to avoid choosing an unwanted region is to see the video and define
 For this process I built the function FrameDifferencingMask.m which works with blocks of pixels 4x4.
 
 This is the 50th frame for the Inter-frame Difference Method block by block:
+
 ![plot](./images/ROI_for_frameNo50_block_by_block.jpg "50th frame block by block difference")
 
 I also built the function FrameDifferencing.m which works pixel by pixel.
 
 This is the 50th frame for the Inter-frame Difference Method pixel by pixel:
+
 ![plot](./images/ROI_for_frameNo50_pixel_by_pixel.jpg "50th frame pixel by pixel difference")
 
 The advantage of this technique is not the precision, but the low computing cost.
@@ -79,6 +82,7 @@ In this method too, to minimize the area of work I choose the region [298:480, 1
 For this method the function FramesAverage.m is built.
 
 This is the 50th frame for the Frame Average Method:
+
 ![plot](./images/ROI_for_frameNo50_frames_average.jpg "50th frame for frames average method")
 
 We can observe that ROI is mainly consisted of vehicles' contour and is smaller comparatively to the 1st method. 
@@ -94,16 +98,19 @@ In this project we were called to create 2 different kinds of noise  e.g. Gaussi
 First, I generate **Gaussian** noise of mean value = 0 and variance = 5500. 
 
 These are the 1st and 150th frames before and after applying AWGN:
+
 ![plot](./images/example_AWGN.jpg "1st and 150th frames before and after AWGN")
 
 Afterwards, I apply the **Inter-frame Difference Method** pixel by pixel.
 
 This is the 150th frame for the Inter-frame Difference Method pixel by pixel with AWGN:
+
 ![plot](./images/ROI_for_frameNo150_pixel_by_pixel_AWGN.jpg "150th frame pixel by pixel difference with AWGN")
 
 We can observe an expansion of the ROI, which is unwanted. This is due to the presence of the noise. To tackle this problem we can increase the value of the threshold from T=2 to T=7.
 
 This is the result:
+
 ![plot](./images/ROI_for_frameNo150_pixel_by_pixel_AWGN_T7.jpg "150th frame pixel by pixel difference with AWGN and T=7")
 
 This ROI tends to look like the original with T=2 and without the noise.
