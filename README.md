@@ -13,9 +13,9 @@ The main code is in the file code/Project.m and this is the one we need to execu
 
 All the other files contain the techniques used to assist us with the task of defining a Region Of Interest in the video that is given to us.
 
-# Information
+# Report
 
-**Input video**
+## Input video
 Read the video 'april21.avi'. This video contains information of 24 bits per pixel. The duration of the film is 10 seconds and FPS is 30. So, we have a total of 300 frames
 and each frame is an RGB image of dimensions 480x704x3.
 
@@ -24,7 +24,7 @@ This is a Moving Camera Moving Objects (MCMO) video, which is the hardest situat
 This is the first frame of the video:
 ![plot](./images/first_frame.jpg "First frame of the video")
 
-**Methods for defining ROI**
+## Methods for defining ROI
 We define the Region Of Interest for this video as the region in which will appear only the cars.
 
 There are many different methods for this to happen. The three main categories are these:
@@ -34,7 +34,7 @@ There are many different methods for this to happen. The three main categories a
 
 In this project I use a method from the 1st and a method from the 2nd category.
 
-**First method: Inter-frame Difference Method**
+## First method: Inter-frame Difference Method
 
 Convert RGB image to Grayscale. 
 
@@ -62,7 +62,7 @@ This is the 50th frame for the Inter-frame Difference Method pixel by pixel:
 
 The advantage of this technique is not the precision, but the low computing cost.
 
-**Second method: Frame Average Method**
+## Second method: Frame Average Method
 
 
 
