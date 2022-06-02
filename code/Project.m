@@ -184,7 +184,7 @@ title('ROI for frame No 150');
 
 %% Afairesh AWGN 
 
-frames_moving = frames_gaussian; % arxikopoihsh
+frames_moving = frames_gaussian; % initialize
 
 for i = 1:300
     for k = 1:3
