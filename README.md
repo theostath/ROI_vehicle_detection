@@ -91,7 +91,7 @@ The main disadvantage of this method is the inadequacy to detect stationary or l
 
 I also export the video with the name FramesAverage.avi when the code is executed.
 
-## Creeate Noise 
+## Create Noise 
 
 In this project we were called to create 2 different kinds of noise  e.g. Gaussian and Salt & Pepper and then use denoising techniques.
 
@@ -120,4 +120,46 @@ Now, I apply the **Frame Average Method** with theshold T=10.
 This is the 150th frame for the Frame Average Method with AWGN:
 
 ![plot](./images/ROI_for_frameNo150_frames_average_AWGN.jpg "150th frame, frames average with AWGN")
+
+For this method the results are similar whith these without the noise, so we keep the threshold value at T=10.
+
+The second kind of noise I create is **impulse** noise or **salt & pepper** noise. in a percentage p%. I choose this value to be p=20.
+
+For this noise i created the function SaltAndPepper.m and the results are presented for the 1st and 150th frames before and after applying the impulse noise:
+
+![plot](./images/example_impulse.jpg "1st and 150th frames before and after impulse noise")
+
+Afterwards, I apply the **Inter-frame Difference Method** pixel by pixel.
+
+This is the 150th frame for the Inter-frame Difference Method pixel by pixel with impulse noise:
+
+![plot](./images/ROI_for_frameNo150_pixel_by_pixel_impulse.jpg "150th frame pixel by pixel difference with impulse noise")
+
+The ROI is altered too much and the threshold value doesn't make it better.
+
+Now, I apply the **Frame Average Method** with theshold T=10.
+
+This is the 150th frame for the Frame Average Method with impulse noise:
+
+![plot](./images/ROI_for_frameNo150_frames_average_impulse.jpg "150th frame, frames average with impulse noise")
+
+In this case, also, the results are bad and can't be fixed by changing the threshold value. 
+
+Therefore, salt & pepper can't be treated with any of the two methods that I used for the definiton of ROI.
+
+## Removal of the Noise
+
+For the **Gaussian** noise I apply a **moving average filter**. This is a lowpass (LP) FIR (Finite Impulse Response) filter and it is very efficient at eliminating AWGN (Additive White Gaussian Noise).
+
+A disadvantage of such filters is that they limit the high frequency information of the video i.e. contours and that reduces the image quality of the frames.
+
+I chose to work with a mask 3x3. I calculate the average value of the pixels and replace their original value with their average value. For the limits of the frames I use zero padding technique.
+
+For this filter I wrote the function MovingAverageFilter.m and the results for the 1st and the 150th frame before (with AWGN) and after the application of the filter can be seen here:
+
+![plot](./images/moving_average.jpg "1st and 150th frame, with and without AWGN")
+
+We can see the improvement in the video quality. I also wrote the function MeanSquareError.m to calculate the MSE between two frames. So the MSE of the 1st frame before and after the filter usage is this (the lower the better):
+
+![plot](./images/mse.jpg "mse of the 1st frame before and after the filter")
 
