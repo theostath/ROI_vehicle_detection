@@ -22,7 +22,7 @@ and each frame is an RGB image of dimensions 480x704x3.
 This is a Moving Camera Moving Objects (MCMO) video, which is the hardest situation to analyze in a dynamic scene.
 
 This is the first frame of the video:
-![plot](./images/first_frame.png "First frame of the video")
+![plot](./images/first_frame.jpg "First frame of the video")
 
 **Methods for defining ROI**
 We define the Region Of Interest for this video as the region in which will appear only the cars.
@@ -52,9 +52,17 @@ One more way to avoid choosing an unwanted region is to see the video and define
 
 For this process I built the function FrameDifferencingMask.m which works with blocks of pixels 4x4.
 
+This is the 50th frame for the Inter-frame Difference Method block by block:
+![plot](./images/ROI_for_frameNo50_block_by_block.jpg "50th frame block by block difference")
 
+I also built the function FrameDifferencing.m which works pixel by pixel.
 
+This is the 50th frame for the Inter-frame Difference Method pixel by pixel:
+![plot](./images/ROI_for_frameNo50_pixel_by_pixel.jpg "50th frame pixel by pixel difference")
 
+The advantage of this technique is not the precision, but the low computing cost.
+
+**Second method: Frame Average Method**
 
 
 
