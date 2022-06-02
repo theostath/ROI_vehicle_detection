@@ -21,8 +21,39 @@ and each frame is an RGB image of dimensions 480x704x3.
 
 This is a Moving Camera Moving Objects (MCMO) video, which is the hardest situation to analyze in a dynamic scene.
 
+This is the first frame of the video:
 ![plot](./images/first_frame.png "First frame of the video")
-*First frame of the video*
+
+**Methods for defining ROI**
+We define the Region Of Interest for this video as the region in which will appear only the cars.
+
+There are many different methods for this to happen. The three main categories are these:
+1) frame differencing
+2) background update
+3) virtual loop
+
+In this project I use a method from the 1st and a method from the 2nd category.
+
+**First method: Inter-frame Difference Method**
+
+Convert RGB image to Grayscale. 
+
+Then calculate for each pixel the absolute difference between the current value and the value of the next frame. 
+
+If this value is greater than a threshold, T, that we define then there is possibly a moving object in this region.
+
+So, we create a binary map where the value of the pixels are equal to 1 if there is a moving object in this position, or an environment with varying brightness and 0 if there isn't.
+
+After experimenting with different values for the threshold, I chose the value T=2.
+
+If I work with a mask 4x4 and I calulate the sum of the absolute differences the results are even better. For this case I set the value of threshold, T=8.
+
+One more way to avoid choosing an unwanted region is to see the video and define the area in which I want to run this algorithm. So I can set an offset for the values (x,y) of the image by watching the first and the last frame of the video. The region I end up with is the following: [298:480, 183:704].
+
+For this process I built the function FrameDifferencingMask.m which works with blocks of pixels 4x4.
+
+
+
 
 
 
