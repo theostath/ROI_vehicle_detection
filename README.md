@@ -62,10 +62,51 @@ This is the 50th frame for the Inter-frame Difference Method pixel by pixel:
 
 The advantage of this technique is not the precision, but the low computing cost.
 
+I also export the video with the name FrameDifferencing.avi when the code is executed.
+
 ## Second method: Frame Average Method
 
+With this method I aim to detect the background and then substract it from each frame in order to remain with the ROI.
 
+Convert RGB image to Grayscale. 
 
+I calculate the average value of each pixel for 5 frames (succesively). Then I calculate the absolute difference between the value of a pixel and the average value calculated. I create a binary mask where if this value of the absolute difference is greater than a threshold, then the corresponding pixel takes the value of 1 or else the pixel takes the value of 0.
 
+After some experimentation I choose the value T=10 for the threshold.
 
+In this method too, to minimize the area of work I choose the region [298:480, 183:704].
+
+For this method the function FramesAverage.m is built.
+
+This is the 50th frame for the Frame Average Method:
+![plot](./images/ROI_for_frameNo50_frames_average.jpg "50th frame for frames average method")
+
+We can observe that ROI is mainly consisted of vehicles' contour and is smaller comparatively to the 1st method. 
+
+The main disadvantage of this method is the inadequacy to detect stationary or low velocity vehicles.
+
+I also export the video with the name FramesAverage.avi when the code is executed.
+
+## Creeate Noise 
+
+In this project we were called to create 2 different kinds of noise  e.g. Gaussian and Salt & Pepper and then use denoising techniques.
+
+First, I generate **Gaussian** noise of mean value = 0 and variance = 5500. 
+
+These are the 1st and 150th frames before and after applying AWGN:
+![plot](./images/example_AWGN.jpg "1st and 150th frames before and after AWGN")
+
+Afterwards, I apply the **Inter-frame Difference Method** pixel by pixel.
+
+This is the 150th frame for the Inter-frame Difference Method pixel by pixel with AWGN:
+![plot](./images/ROI_for_frameNo150_pixel_by_pixel_AWGN.jpg "150th frame pixel by pixel difference with AWGN")
+
+We can observe an expansion of the ROI, which is unwanted. This is due to the presence of the noise. To tackle this problem we can increase the value of the threshold from T=2 to T=7.
+
+This is the result:
+![plot](./images/ROI_for_frameNo150_pixel_by_pixel_AWGN_T7.jpg "150th frame pixel by pixel difference with AWGN and T=7")
+
+This ROI tends to look like the original with T=2 and without the noise.
+
+Now, I apply the **Frame Average Method** with T=10.
 
