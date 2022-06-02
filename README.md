@@ -9,7 +9,7 @@ Matlab 2017.
 
 # Code
 
-The main code is in the file Project.m and this is the one we need to run. 
+The main code is in the file code/Project.m and this is the one we need to execute. First, we need to put the original video 'april21.avi' in the same folder with Project.m or specify the path.
 
 All the other files contain the techniques used to assist us with the task of defining a Region Of Interest in the video that is given to us.
 
