@@ -9,6 +9,6 @@ ImageX = conv2(image, SobelX);
 ImageY = conv2(image, SobelY);
 
 Magnitude = sqrt((ImageX).^2 + abs(ImageY).^2);
-% krataw ta aparaithta pixel
+% I keep the neceassary pixels
 Out = Magnitude(2:size(Magnitude,1)-1,2:size(Magnitude,2)-1); 
 end
