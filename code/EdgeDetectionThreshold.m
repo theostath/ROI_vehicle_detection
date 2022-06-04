@@ -5,8 +5,8 @@ threshold_min = min(min(image(:,:)));
 
 threshold = c*(threshold_max-threshold_min)+threshold_min;
 
-N = 0; % posa pixel eixa arxika sthn maska epiloghs ROI
-sum = 0; % arithmos pixel pou krataw sthn maska Sobel
+N = 0; % number of pixels I initially had in the ROI
+sum = 0; % number of pixels in Sobel mask
 for i = 1:size(image,1)
     for j = 1:size(image,2)
         if image(i,j)>=threshold
