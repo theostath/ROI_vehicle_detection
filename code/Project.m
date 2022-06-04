@@ -182,7 +182,7 @@ title('ROI for frame No 150');
 
 %% 2b. DENOISING
 
-%% Afairesh AWGN 
+%% Removing AWGN 
 
 frames_moving = frames_gaussian; % initialize
 
@@ -247,9 +247,9 @@ figure(27);
 imshow(frames_ROI2_moving2(:,:,:,150));
 title('ROI for frame No 150');
 
-%% Afairesh Impulse Noise
+%% Removing Impulse Noise
 
-frames_median = frames_impulse; %arxikopoihsh
+frames_median = frames_impulse; % initialize
 
 for i = 1:300
     for k = 1:3
@@ -335,9 +335,9 @@ end
 
 figure(35);
 plot(p_sobel1);
-title('Pososto pixel pou krataw (Frame Differencing)');
+title('Percentage of pixels retained (Frame Differencing)');
 
-av1 = sum(p_sobel1)/300; % mesos oros tou posostou pixel pou krataw
+av1 = sum(p_sobel1)/300; % mean value of the percentage of pixels retained
 
 figure(36);
 imshow(ROI_mask1(:,:,50));
