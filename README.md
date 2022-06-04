@@ -244,19 +244,19 @@ By giving appropriate values at the constant c I can control the value of the th
 
 For the **Inter-frame Difference Method** I chose the value c=0.55 and I found that I keep in average (from the 300 frames) 6.58% of the pixels. These are the results for the 50th frame:
 
-![plot](ROI_for_frameNo50_pixel_by_pixel_Sobel.jpg "50th frame, inter-frame difference with Sobel mask")
+![plot](./images/ROI_for_frameNo50_pixel_by_pixel_Sobel.jpg "50th frame, inter-frame difference with Sobel mask")
 
 And this is the Sobel mask for the 50th frame:
 
-![plot](frameNo50_Sobel.jpg "Sobel mask for the 50th frame")
+![plot](./images/frameNo50_Sobel.jpg "Sobel mask for the 50th frame")
 
 I do the same process for the **Frame Average Method** with the value of the constant c=0.55 and I keeip in average (from the 300 frames) 22.5% of the pixels. These are the results for the 50th frame:
 
-![plot](ROI_for_frameNo50_frames_average_Sobel.jpg "50th frame, frames average with Sobel mask")
+![plot](./images/ROI_for_frameNo50_frames_average_Sobel.jpg "50th frame, frames average with Sobel mask")
 
 And this is the Sobel mask for the 50th frame:
 
-![plot](frameNo50_Sobel_frames_average.jpg "Sobel mask for the 50th frame")
+![plot](./images/frameNo50_Sobel_frames_average.jpg "Sobel mask for the 50th frame")
 
 ### Color Detection
 
@@ -264,7 +264,7 @@ I observe the original video and I notice that the only red object in the image 
 
 Each color is reperesented by certain values in the RGB space.
 
-![plot](rgb.jpg "RGB space normalized")
+![plot](./images/rgb.jpg "RGB space normalized")
 
 I built the function ColorDetection.m for this puprpose.
 
