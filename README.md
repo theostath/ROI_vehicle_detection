@@ -163,3 +163,28 @@ We can see the improvement in the video quality. I also wrote the function MeanS
 
 ![plot](./images/mse.jpg "mse of the 1st frame before and after the filter")
 
+Now I apply the **Inter-frame Difference Method** pixel by pixel.
+
+This is the 150th frame for the Inter-frame Difference Method pixel by pixel with AWGN after the application of moving average filter:
+
+![plot](./images/ROI_for_frameNo150_pixel_by_pixel_AWGN_after_filter.jpg "150th frame, inter-frame difference with AWGN after filter")
+
+The result is satisfying. It is better compared to the ROI with AWGN, so we keep the value of the threshold at T=2.
+
+I also use the **Frame Average Method** with theshold T=10.
+
+This is the 150th frame for the Frame Average Method with AWGN after the application of moving average filter:
+
+![plot](./images/ROI_for_frameNo150_frames_average_AWGN_after_filter.jpg "150th frame, frames average with AWGN after filter")
+
+Comparing the ROI with the original we see that it is smaller. Therefore I decrease the value of threshold to T=7.
+
+![plot](./images/ROI_for_frameNo150_frames_average_AWGN_after_filter_T7.jpg "150th frame, frames average, T=7, with AWGN after filter")
+
+For the **Impulse** noise I apply a **median filter**. This is a linear lowpass (LP) filter and it is very efficient at eliminating AWGN (Additive White Gaussian Noise), while also keeping intact the contours in the frames.
+
+I work with a mask 3x3 and the value of each pixel is replaced by the median value that results from sorting the pixels' values at the area of the mask. For the limits of the frames I use zero padding technique.
+
+For this filter I wrote the function MedianFilter.m and the results for the 1st and the 150th frame before (with impulse noise) and after the application of the filter can be seen here:
+
+![plot](./images/median.jpg "1st and 150th frame, with and without impulse noise")
