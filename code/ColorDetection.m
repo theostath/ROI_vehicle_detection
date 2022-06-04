@@ -1,17 +1,17 @@
 function [redMask,blackMask,SobelMask] = ColorDetection(Image,Sobel)
 
-% xwrizw sta 3 kanalia (Red - Greeen - Blue)
+% split the 3 channels (Red - Greeen - Blue)
 redBand = Image(:,:,1,:);
 greenBand = Image(:,:,2,:);
 blueBand = Image(:,:,3,:);
 
-% entopizw xrwmata
+% detect colors
 redMask = uint8((redBand >= 179) & (greenBand <= 82) & (blueBand <= 82));
 
 blackMask = uint8((redBand <= 32) & (redBand >= 1) & (greenBand <= 32) & ...
 (greenBand >= 1) & (blueBand <= 32) & (blueBand >= 1) );
 
-SobelMask = Sobel; % arxikopoihsh
+SobelMask = Sobel; % initialize
 
 for i = 298:480
     for j = 183:704
