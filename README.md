@@ -210,3 +210,61 @@ This is the 150th frame for the Inter-frame Difference Method pixel by pixel wit
 The results are good, but we could increase the threshold value from T=2 to T=5 to have a smaller ROI:
 
 ![plot](./images/ROI_for_frameNo150_pixel_by_pixel_impulse_after_filter_T5.jpg "150th frame, inter-frame difference, T=5, with impulse noise after filter")
+
+I also use the **Frame Average Method** with theshold T=10.
+
+This is the 150th frame for the Frame Average Method with impulse noise after the application of medina filter:
+
+![plot](./images/ROI_for_frameNo150_frames_average_impulse_after_filter.jpg "150th frame, frames average with impulse noise after filter")
+
+The result is satisfying so we keep the value of the threshold T=10.
+
+## Create a Vehicle Detection Mask
+
+The methods for vehicle detection can be divided in three main categories:
+1) knowledge-based
+2) motion-based
+3) wavelet-based
+
+Here, I focus on the 1st category. I try to exploit knowledge like the color of the cars, the edges, the shadows etc.
+
+### Edge Detection
+
+At first, I apply the Sobel mask to the frames in order to detect the edges in the ROI. The detection of edges with Sobel mask is an operator for local use. The dimensions of the mask here are 3x3.
+
+![plot](./images/sobel.jpg "sobel mask")
+
+I built the function EdgeDetectionSobel.m for this purpose. I also wrote the function EdgeDetectionThreshold.m in order to choose a threshold for which I keep the pixels selected by the Sobel mask, or not.
+
+A good technique to calculate the value of the threshold would be through the histogram of each frame. But, since we have 300 frames this would be very time and energy consuming. Therefore, I chose a simpler method after finding the minimum and maximum value of each frame's pixels.
+
+threshold = c * (max - min) + min
+
+By giving appropriate values at the constant c I can control the value of the threshold and therefore the percentage of pixels that are over the threshold. 
+
+For the **Inter-frame Difference Method** I chose the value c=0.55 and I found that I keep in average (from the 300 frames) 6.58% of the pixels. These are the results for the 50th frame:
+
+![plot](ROI_for_frameNo50_pixel_by_pixel_Sobel.jpg "50th frame, inter-frame difference with Sobel mask")
+
+And this is the Sobel mask for the 50th frame:
+
+![plot](frameNo50_Sobel.jpg "Sobel mask for the 50th frame")
+
+I do the same process for the **Frame Average Method** with the value of the constant c=0.55 and I keeip in average (from the 300 frames) 22.5% of the pixels. These are the results for the 50th frame:
+
+![plot](ROI_for_frameNo50_frames_average_Sobel.jpg "50th frame, frames average with Sobel mask")
+
+And this is the Sobel mask for the 50th frame:
+
+![plot](frameNo50_Sobel_frames_average.jpg "Sobel mask for the 50th frame")
+
+### Color Detection
+
+I observe the original video and I notice that the only red object in the image is the red vehicle. So, I want to keep every red pixel values in the ROI. This is also true for the two black vehicles.
+
+Each color is reperesented by certain values in the RGB space.
+
+![plot](rgb.jpg "RGB space normalized")
+
+I built the function ColorDetection.m for this puprpose.
+
