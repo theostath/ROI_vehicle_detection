@@ -95,6 +95,8 @@ I also export the video with the name FramesAverage.avi when the code is execute
 
 In this project we were called to create 2 different kinds of noise  e.g. Gaussian and Salt & Pepper and then use denoising techniques.
 
+### Gaussian noise
+
 First, I generate **Gaussian** noise of mean value = 0 and variance = 5500. 
 
 These are the 1st and 150th frames before and after applying AWGN:
@@ -123,6 +125,8 @@ This is the 150th frame for the Frame Average Method with AWGN:
 
 For this method the results are similar whith these without the noise, so we keep the threshold value at T=10.
 
+### Impulse noise
+
 The second kind of noise I create is **impulse** noise or **salt & pepper** noise. in a percentage p%. I choose this value to be p=20.
 
 For this noise i created the function SaltAndPepper.m and the results are presented for the 1st and 150th frames before and after applying the impulse noise:
@@ -148,6 +152,8 @@ In this case, also, the results are bad and can't be fixed by changing the thres
 Therefore, salt & pepper can't be treated with any of the two methods that I used for the definiton of ROI.
 
 ## Removal of the Noise
+
+### Gaussian noise
 
 For the **Gaussian** noise I apply a **moving average filter**. This is a lowpass (LP) FIR (Finite Impulse Response) filter and it is very efficient at eliminating AWGN (Additive White Gaussian Noise).
 
@@ -181,6 +187,8 @@ Comparing the ROI with the original we see that it is smaller. Therefore I decre
 
 ![plot](./images/ROI_for_frameNo150_frames_average_AWGN_after_filter_T7.jpg "150th frame, frames average, T=7, with AWGN after filter")
 
+### Impulse noise
+
 For the **Impulse** noise I apply a **median filter**. This is a linear lowpass (LP) filter and it is very efficient at eliminating AWGN (Additive White Gaussian Noise), while also keeping intact the contours in the frames.
 
 I work with a mask 3x3 and the value of each pixel is replaced by the median value that results from sorting the pixels' values at the area of the mask. For the limits of the frames I use zero padding technique.
@@ -188,3 +196,17 @@ I work with a mask 3x3 and the value of each pixel is replaced by the median val
 For this filter I wrote the function MedianFilter.m and the results for the 1st and the 150th frame before (with impulse noise) and after the application of the filter can be seen here:
 
 ![plot](./images/median.jpg "1st and 150th frame, with and without impulse noise")
+
+The quality of the frames is greatly improved. The MSE was calculated for this case too, for the 1st frame before and after the use of the median filter (the lower the better):
+
+![plot](./images/mse_median.jpg "mse of the 1st frame before and after the median filter")
+
+Now I apply the **Inter-frame Difference Method** pixel by pixel.
+
+This is the 150th frame for the Inter-frame Difference Method pixel by pixel with impulse noise after the application of median filter:
+
+![plot](./images/ROI_for_frameNo150_pixel_by_pixel_impulse_after_filter.jpg "150th frame, inter-frame difference with impulse noise after filter")
+
+The results are good, but we could increase the threshold value from T=2 to T=5 to have a smaller ROI:
+
+![plot](./images/ROI_for_frameNo150_pixel_by_pixel_impulse_after_filter_T5.jpg "150th frame, inter-frame difference, T=5, with impulse noise after filter")
