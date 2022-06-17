@@ -19,10 +19,10 @@ end
 % block by block substraction
 mask = zeros(M,N);
 
-% ftiaxnw maskes 4x4 kai ypologizw to apolyto ths diaforas se afta
+% i build masks 4x4 and calculate the absolute difference in them
 for i = 1:480
     for j = 1:704
-        if i <298 || j<183  % ta oria pou ethesa apo 1o kai teleftaio frame 
+        if i <298 || j<183  % the limits i defined from the 1st and last frames 
             mask(i,j) = 0;
         else
             frame_diff = sum(sum(abs(Image1_padded(i:i+4,j:j+4)-Image2_padded(i:i+4,j:j+4))));
