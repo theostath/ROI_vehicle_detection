@@ -9,7 +9,7 @@ end
 
 %% Create ROI mask trhough Frame Differencing technique (Backgound Subtraction)
 
-ROI_mask = zeros(480,704,300); % arxikopoihsh
+ROI_mask = zeros(480,704,300); % initialize
 
 for i = 1:300
     if i == 300 % special case fot the last frame
