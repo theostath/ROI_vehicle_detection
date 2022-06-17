@@ -268,3 +268,39 @@ Each color is reperesented by certain values in the RGB space.
 
 I built the function ColorDetection.m for this puprpose.
 
+This function takes as input the image's region of interest and the Sobel mask. If we detect certain colors in the ROI we include them in the Sobel mask which is then returned from the function.
+
+### Morphological Processing
+
+Morphological opening of the image using a structural object, i.e. a disk with the size of 2 pixels, could be a good choice. This is done with the Matlab built-in function imopen(im,se), where im is the image in grayscale or binary mode, and se is the structural element used for the morphological opening. In this case sedisk = strel('disk',2).
+
+In this case, the ROI before or after the edge detection is not solid and that leads to bad results. So I do not use this method.
+
+I ended up using another built-in function: bwareaopen which takes two inputs, a binary image and a number P. This function performs morphological opening in such way, that removes objects that have less than P pixels. The aim here is to remove all the small objects from the ROI. In the Frame Differencing method i chose the value of P to be equal to 32. In the Frames Average method the value of P was set to 28. 
+
+Here is the color detection mask created for the 95th frame for the Frame Differencing method:
+
+![plot](./images/frameNo95_ColorDetection_FrameDifference.jpg "Color Detection mask for the 95th frame")
+
+And here is the mask created after the morphological processing of the binary mask:
+
+![plot](./images/frameNo95_MorphologicalProcessing_FrameDifference.jpg "Morphological Processing for the previous mask to remove small objects")
+
+All the small objects are removed from the binary mask and the vehicles remain intact.
+
+The same process is followed for the Frames Average method.
+
+Here is the color detection mask created for the 95th frame for the Frame Average method:
+
+![plot](./images/frameNo95_ColorDetection_FrameAverage.jpg "Color Detection mask for the 95th frame")
+
+And here is the mask created after the morphological processing of the binary mask:
+
+![plot](./images/frameNo95_MorphologicalProcessing_FrameAverage.jpg "Morphological Processing for the previous mask to remove small objects")
+
+The results here are worse, but still some small objects are removed from the mask.
+
+### Conclusion
+
+Creating a mask that creates a Region Of Interest for the detection of cars in a moving camera moving objects video is not an easy process. It includes a series of processes that need to be applied correctly. It also seems to be an ad hoc process since the mask I finally created here would not work the same way in any given video.
+
