@@ -5,7 +5,7 @@ mask = zeros(480,704);
 
 for i = 1:480
     for j = 1:704
-        if i <298 || j<183  % ta oria pou ethesa apo 1o kai teleftaio frame 
+        if i <298 || j<183  % the limits i defined from the 1st and last frames 
             mask(i,j) = 0;
         else
             frame_diff = abs(Image1(i,j)-Image2(i,j));
