@@ -370,7 +370,7 @@ end
 
 figure(38);
 plot(p_sobel2);
-title('Pososto pixel pou krataw (Frames Average)');
+title('Percentage of pixels retained (Frames Average)');
 
 av2 = sum(p_sobel2)/300; % mesos oros tou posostou pixel pou krataw
 
@@ -450,11 +450,11 @@ close(video); %close the file
 
 %% Morphological opening: Frame Differencing
 
-% a tropos (den doulevei kala se afth thn periptwsh)
+% 1st way (does not work well in this situation)
 sedisk1 = strel('disk',2); % structuring element
 noSmallStructures1 = imopen(Sobel1, sedisk1);
 
-% b tropos (doulevei kala)
+% 2nd way (works well)
 VehicleDetection1 = bwareaopen(Sobel1/255,32);
 
 figure(47);
@@ -473,11 +473,11 @@ close(video); %close the file
 
 %% Morphological opening: Frames Average
 
-% a tropos (den doulevei kala se afth thn periptwsh)
+% 1st way (does not work well in this situation)
 sedisk2 = strel('disk',2); % structuring element
 noSmallStructures = imopen(Sobel2, sedisk2);
 
-% b tropos (doulevei kala)
+% 2nd way (works well)
 VehicleDetection2 = bwareaopen(Sobel2/255,28);
 
 figure(48);
